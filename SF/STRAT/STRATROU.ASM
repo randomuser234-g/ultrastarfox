@@ -2156,13 +2156,19 @@ do_coll_l
 .ntun
 
 	LDA	AL_HP,X	
-	BMI	.o2c
+	;BMI	.o2c
+	BEQ	.playerdead		;if hit and 0 hp, dead
 	SEC
 	SBC	X1
 	BPL	.nnhc
 	LDA	#0
 .nnhc	STA	AL_HP,X
 .o2c	s_set_alvar		B,x,al_collcount,tpa
+	bra	.skip
+.playerdead
+	s_set_objtobeplayer	y
+	lda	#0
+	s_sta.w	al_HP,y
 .skip
 
 
