@@ -1759,8 +1759,9 @@ gate_strat
 
 
 	ldy	pcboxobj_B
-	lda.w	al_hp,y
-	beq	.norm
+	s_jmp_ifplayerdead	.norm	;added check for player being dead
+	lda.w	al_hp,y		;is your hp 0?
+	;beq	.norm		;if yes, don't touch	;commented out
 	clc
 	adc	#20
 	cmp	#40
