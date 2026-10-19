@@ -4,6 +4,11 @@ Star Fox / Starwing source code, modified for ease-of-use and ROMhacking.
 
 Go [here](#building) to jump straight to the building instructions.  
 
+-edits from original
+
+-A buffer hit is added, once 0 HP is reached, you still get 1 more hit before you die, like in StarFox 2 and later StarFox games
+-Some config is edited to enable boost and brake by default (note these options already existed, just turned on)
+
 ## Credits (A-Z)
 
 - **H A M G E R** - Wireframe shield meter color changing Super FX code
