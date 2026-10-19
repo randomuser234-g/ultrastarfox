@@ -220,7 +220,8 @@ pcolB_strat
 .halfcol	
 	s_docoll		x,#framesperAP,1
 .donecol
-	s_jmp_alvarZERO	B,x,al_hp,.n8sndt
+	;s_jmp_alvarZERO	B,x,al_hp,.n8sndt	;check for 0 health
+	s_jmp_ifplayerdead	.n8sndt				;changed to check if dead
 	s_jmp_alvarMORE		B,x,al_hp,#playerB_HP/4,.n4snd
  	s_jmp_alsflag		x,sflag1,.n4sndt
 	s_set_alsflag		x,sflag1
@@ -256,7 +257,16 @@ pcolBexp_Istrat
 	s_set_alvar	B,x,al_HP,#1
 	s_end_strat
 .candie
+	s_start_strat								;copy paste collision checks from up there to be available at 0hp
 	s_set_objtobeplayer	y
+	s_copy_pos		x,y	
+	s_copy_rots		x,y	
+	s_add_Roffs2pos		B,x,x,x,#0,#0,#0,0,0,1
+
+	s_set_objtobealvar.w	y,x,al_collobjptr
+	s_jmp_varAND	B,pshipflags2,#psf2_wireship,.dontdie			;if at 0 and haven't been hit recently, don't die
+	s_jmp_objptrBAD		y,.dontdie
+	s_set_objtobeplayer	y										;otherwise die
 	s_kill_obj		y
 	s_end_strat
 
