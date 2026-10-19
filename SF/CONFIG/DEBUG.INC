@@ -26,7 +26,7 @@ totalmsgs			equ	142
 
 ; Allows you to enable planet select cheat on the map
 ; before you have selected a level. Press X to activate.
-planetcheaton 		equ 0
+planetcheaton 		equ 1
 
 ; Debug mode font to use
 ; 2BPP 8x8 tiles (2BPP GB in YY-CHR)
@@ -60,11 +60,11 @@ godmode			equ	0
 
 ; Infinite Braking
 ; [0 = off 1 = on]
-infbrake		equ	0
+infbrake		equ	1
 
 ; Infinite Boosting
 ; [0 = off 1 = on]
-infboost		equ	0
+infboost		equ	1
 
 ; Infinite Bombs
 ; [0 = off, 1 = on]
