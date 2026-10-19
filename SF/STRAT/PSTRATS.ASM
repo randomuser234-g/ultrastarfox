@@ -257,7 +257,7 @@ pcolBexp_Istrat
 	s_set_alvar	B,x,al_HP,#1
 	s_end_strat
 .candie
-	s_start_strat								;copy paste collision checks from up there to be available at 0hp
+								;copy paste collision checks from up there to be available at 0hp
 	s_set_objtobeplayer	y
 	s_copy_pos		x,y	
 	s_copy_rots		x,y	
