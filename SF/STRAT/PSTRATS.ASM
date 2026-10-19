@@ -268,6 +268,7 @@ pcolBexp_Istrat
 	s_jmp_objptrBAD		y,.dontdie
 	s_set_objtobeplayer	y										;otherwise die
 	s_kill_obj		y
+.dontdie
 	s_end_strat
 
 ;*****************************************************************************
