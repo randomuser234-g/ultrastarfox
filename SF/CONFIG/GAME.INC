@@ -13,7 +13,7 @@
 wnglzrman_helpball	equ	0
 
 ; Crosshair in third person view [0 = off, 1 = on]
-crosshairalwayson	equ	0
+crosshairalwayson	equ	1
 
 ; Skip intro cutscene
 ; [0 = off, 1 = on]
