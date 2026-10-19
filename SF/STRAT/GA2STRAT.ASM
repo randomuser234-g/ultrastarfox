@@ -2621,8 +2621,9 @@ gate3_strat
 	s_jmp_alsflag	x,sflag1,.touched
 	s_set_alsflag	x,sflag1
 	ldy	pcboxobj_B
-	lda.w	al_hp,y
-	beq	.ntouch
+	s_jmp_ifplayerdead	.ntouch	;added check for player being dead
+	lda.w	al_hp,y		;is your HP 0
+	;beq	.ntouch		;if yes, you can't touch	;commented out
 	clc
 	adc	#20
 	cmp	#40
@@ -2674,8 +2675,9 @@ gate2_strat
 	
 
 	ldy	pcboxobj_B
-	lda.w	al_hp,y
-	beq	.ntouch
+	s_jmp_ifplayerdead	.ntouch	;added check for player being dead
+	lda.w	al_hp,y		;is your HP 0
+	;beq	.ntouch		;if yes, you can't touch	;commented out
 	clc
 	adc	#5
 	cmp	#40
