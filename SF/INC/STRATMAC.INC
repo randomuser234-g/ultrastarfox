@@ -6149,6 +6149,59 @@ MYNARG	=	NARG
 	stratmac_end
 	ENDM
 
+;-----------------------------------------------------------------------------
+s_docoll_ARWING		MACRO	obj1,frames per AP,[#AP scale down]		;added custom macros
+	stratmac_start
+MYNARG	=	NARG
+	CHK_NARG	2,3
+	CHK_OBJ	\1
+
+	EXG_IFY	\1
+  	phy
+
+	ldy	al_collobjptr,x
+	beq	.\@
+
+     
+	s_lda.w	al_AP,y
+	IFEQ	NARG-3
+	REPT	\3
+	asra
+	ENDR
+	ENDC
+	sta	x1
+
+	lda	\2
+	sta	tpa
+
+      	jsl	do_coll_arwing	;jump to code meant exclusively for arwing
+.\@
+	ply
+	EXG_IFY	\1
+	stratmac_end
+	ENDM
+	
+
+;-----------------------------------------------------------------------------
+s_docollAP_ARWING		MACRO	obj1,frames per AP,AP override		;added custom macros
+	stratmac_start
+MYNARG	=	NARG
+	CHK_NARG	3
+	CHK_OBJ	\1
+
+	EXG_IFY	\1
+
+	lda	\3
+	sta	x1
+
+	lda	\2
+	sta	tpa
+
+	jsl	do_coll_arwing	;jump to code meant exclusively for arwing
+	EXG_IFY	\1
+	stratmac_end
+	ENDM
+
 
 ;-----------------------------------------------------------------------------
 s_obj2collide		MACRO	obj1
