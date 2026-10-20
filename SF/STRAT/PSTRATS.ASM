@@ -98,7 +98,7 @@ brkpwingcol
 	brl			no_pwingcol	
 
 .bodywallcol
-	s_docollAP		y,#framesperAP,#4
+	s_docollAP_ARWING		y,#framesperAP,#4
 	brl			no_pwingcol	
 
 	
@@ -111,15 +111,15 @@ pwingcol
 	sty			al_collobjptr,x
 
 	s_jmp_varAND		B,pshipflags2,#psf2_wireship,.halfcol
-	s_docoll		x,#framesperAP,1
+	s_docoll_ARWING		x,#framesperAP,1
 	s_brl			.donecol
-.halfcol	s_docoll		x,#framesperAP,2
+.halfcol	s_docoll_ARWING		x,#framesperAP,2
 .donecol
 	plx
 .nbcoll
 
 	s_jmp_varAND		B,pshipflags2,#psf2_wireship,.wirewcol
-	s_docollAP		x,#framesperAP,#1
+	s_docollAP_ARWING		x,#framesperAP,#1
 	s_brl		no_pwingcol
 .wirewcol
 	trigse		$14
@@ -215,10 +215,10 @@ pcolB_strat
 
 
 	s_jmp_varAND		B,pshipflags2,#psf2_wireship,.halfcol
-	s_docoll		x,#framesperAP
+	s_docoll_ARWING		x,#framesperAP
 	s_brl			.donecol
 .halfcol	
-	s_docoll		x,#framesperAP,1
+	s_docoll_ARWING		x,#framesperAP,1
 .donecol
 	;s_jmp_alvarZERO	B,x,al_hp,.n8sndt	;check for 0 health
 	s_jmp_ifplayerdead	.n8sndt				;changed to check if dead
@@ -270,7 +270,6 @@ pcolBexp_Istrat
 	s_kill_obj		y
 .dontdie
 	s_end_strat
-
 ;*****************************************************************************
 pLWing_Istrat
 	s_start_strat
@@ -471,7 +470,6 @@ pcolRW_Istrat
 
 	s_set_var		B,screenflashcnt,#screenflashwingfrms
 	s_set_var		B,screenflashtype,#screenflashwingtype
-
 
 	s_set_objtobealvar.w	y,x,al_collobjptr
 	s_jmp_varAND	B,pshipflags2,#psf2_wireship,.dsn

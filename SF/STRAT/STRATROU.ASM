@@ -2156,19 +2156,15 @@ do_coll_l
 .ntun
 
 	LDA	AL_HP,X	
-	;BMI	.o2c
-	BEQ	.playerdead		;if hit and 0 hp, dead
+	BMI	.o2c
 	SEC
 	SBC	X1
 	BPL	.nnhc
 	LDA	#0
 .nnhc	STA	AL_HP,X
 .o2c	s_set_alvar		B,x,al_collcount,tpa
-	bra	.skip
+	;bra	.skip
 .playerdead
-	s_set_objtobeplayer	y
-	lda	#0
-	s_sta.w	al_HP,y
 .skip
 
 
@@ -2182,6 +2178,36 @@ do_coll_l
 ;	a8
 
       	rtl
+
+do_coll_arwing
+		
+;copy of collision to account for arwing buffer hit
+	s_decbne_alvar		B,x,al_collcount,.skip
+.f2
+	s_jmpNOT_varAND		B,pshipflags3,#psf3_intunnel,.ntun
+	lda			x1
+	cmp			#hardAP
+	bne			.nhard
+	asra
+	sta			x1
+.nhard
+.ntun
+	LDA	AL_HP,X	
+	BEQ	.playerdead		;if hit and 0 hp, dead
+	SEC
+	SBC	X1
+	BPL	.nnhc
+	LDA	#0
+.nnhc	STA	AL_HP,X
+.o2c	s_set_alvar		B,x,al_collcount,tpa
+	bra	.skip
+.playerdead	;note this should not be placed in do_coll_l normally, cause death bug w professor hangar, he dies too early if shot at start, separate code for arwing only
+	s_set_objtobeplayer	y
+	lda	#0
+	s_sta.w	al_HP,y
+.skip
+      	rtl
+
 
 ;*****************************************************************************
 ;* do_strat_l
