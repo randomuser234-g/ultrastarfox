@@ -47,6 +47,7 @@
 ;	global	next_pweapon_l
 	global	fire_weapon_l
 	global	do_coll_l
+	global	do_coll_arwing	;added
 	global	Do_strat_l
 	global	init_objvars_l
 	global	makeobj_l
