@@ -7,6 +7,9 @@ Go [here](#building) to jump straight to the building instructions.
 -edits from original
 
 -A buffer hit is added, once 0 HP is reached, you still get 1 more hit before you die, like in StarFox 2 and later StarFox games
+
+(note, does not always work, common scenario that still kills you despite HP is bumping into a wall by the wings
+
 -Some config is edited to enable boost and brake by default (note these options already existed, just turned on)
 
 ## Credits (A-Z)
